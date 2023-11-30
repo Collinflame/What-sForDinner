@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  include mixins/restaurantCard
+  div.container
+    form(action='/' method='get')
+      div.form-input
+        label(for='category') Category
+        select(id='category' name='category' autocomplete='off')
+          each category in categories
+            option(value=category selected=(category === searchCategory)) #{category}
+          div.form-input
+            label(for='random') Random
+            input(type='checkbox' name='random' id='random' checked=searchRandom)
+      button.button.save(type='submit') Filter
+  div.container
+    div.add-button-row
+      a.button.save(href="/add") Add Restaurant
+  div.container
+    each restaurant in restaurants
+      +restaurantCard(restaurant)

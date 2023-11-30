@@ -1,0 +1,5 @@
+extends layout
+
+block content
+    include mixins/restaurantForm
+    +restaurantForm(restaurant, `/edit/${restaurant.id}`, 'edit', 'Edit Restaurant')

@@ -1,0 +1,29 @@
+mixin restaurantForm(restaurant, actionURL, mode, title)
+
+    div.form-panel
+        div.header= title
+            form(action=actionURL method='post')
+                div.form-input
+                    label(for='name') Name:
+                    input(type='text' id='name' name='name' value=restaurant.name)
+                div.form-input
+                    label(for='category') Category
+                    select(name='category' id='category' autocomplete='off')
+                        each category in categories
+                            option(value=category selected = (category ===restaurant.category)) #{category}
+                div.form-input
+                    label(for='rating') Rating
+                    select(id='rating' name='rating' autocomplete='off')
+                        -for(let i = 1; i<=5; i++)
+                            option(value=i selected = (rating === restaurant.rating)) #{i}
+                div.form-input
+                    label(for='image') Image URL:
+                    input(type='text' id='image' name='image' value=restaurant.image)
+                div.form-input
+                    label(for='description') Description:
+                    textarea(id='description' name='description') #{restaurant.description}
+                div.button-row
+                    a.button.cancel(href='/') Cancel
+                    if (mode==='edit')
+                        a.button.delete(href=`/delete/${restaurant.id}`) Delete
+                    button.button.save(type='submit') Submit

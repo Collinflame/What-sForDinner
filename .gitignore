@@ -1,0 +1,4 @@
+node_modules/
+.idea/
+config/config.json
+migrations/20231113171926-create-restaurant.js
